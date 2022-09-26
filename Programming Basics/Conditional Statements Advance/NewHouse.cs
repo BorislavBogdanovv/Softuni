@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace NewHouse
 {
@@ -6,31 +6,65 @@ namespace NewHouse
     {
         static void Main(string[] args)
         {
-            //четем входа от конзолата
-            string flowersType = Console.ReadLine();
-            int flowerQuantity = int.Parse(Console.ReadLine());
+            string type = Console.ReadLine();
+            int quantity = int.Parse(Console.ReadLine());
             int budget = int.Parse(Console.ReadLine());
+            double price = 0;
 
-            double price = 0.0;
-
-            //правим 5 проверки за всеки тип цвете
-            //Roses, Dahlias, Tulips, Narcissus, Gladiouls
-            // + вътрешна проверка
-
-            if (flowersType == "Roses")
+            if (type == "Roses")
             {
-                price = flowerQuantity * 5.00;
+                price = quantity * 5;
 
-                if (flowerQuantity > 80)
+                if (quantity > 80)
                 {
-                    price = price - price * 0.1;
+                    price = price * 0.9;
                 }
             }
-            else if (flowersType == "Dahlias")
+            else if (type == "Dahlias")
             {
-                //... да я довърша сам, всичко се повтаря
+                price = quantity * 3.8;
+
+                if (quantity > 90)
+                {
+                    price = price * 0.85;
+                }
             }
-            
+            else if (type == "Tulips")
+            {
+                price = quantity * 2.8;
+
+                if (quantity > 80)
+                {
+                    price = price * 0.85;
+                }
+            }
+            else if (type == "Narcissus")
+            {
+                price = quantity * 3;
+
+                if (quantity < 120)
+                {
+                    price = price * 1.15;
+                }
+            }
+            else if (type == "Gladiolus")
+            {
+                price = quantity * 2.5;
+
+                if (quantity < 80)
+                {
+                    price = price * 1.2;
+                }
+            }
+
+            if (budget >= price)
+            {
+                Console.WriteLine($"Hey, you have a great garden with {quantity} {type} and {budget - price:f2} leva left.");
+            }
+            else if (budget < price)
+            {
+                Console.WriteLine($"Not enough money, you need {(budget - price)*-1:f2} leva more.");
+            }
         }
     }
 }
